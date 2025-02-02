@@ -1,6 +1,8 @@
 const { Server } = require("socket.io");
 const http = require("http");
 
+const port = process.env.PORT || 5000;  // Use environment variable for port (or fallback to 5000)
+
 const server = http.createServer();
 const io = new Server(server, { cors: { origin: "*" } });
 
@@ -24,4 +26,5 @@ io.on("connection", (socket) => {
   });
 });
 
-server.listen(5000, () => console.log("Signaling Server Running on Port 5000"));
+// Use dynamic PORT for cloud platforms
+server.listen(port, () => console.log(`Signaling Server Running on Port ${port}`));
